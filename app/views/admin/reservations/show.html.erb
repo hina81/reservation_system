@@ -1,0 +1,69 @@
+<div class="w-full bg-gray-50 px-4 py-8">
+  <div class="w-full  bg-white p-6 rounded-lg shadow-md">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">予約詳細</h1>
+
+    <div class="space-y-4">
+      <p class="text-lg">
+        <strong class="text-gray-700">お名前:</strong> 
+        <span class="text-gray-900"><%= "#{@reservation.last_name} #{@reservation.first_name}" %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">お名前（カナ）:</strong> 
+        <span class="text-gray-900"><%= "#{@reservation.kana_last_name} #{@reservation.kana_first_name}" %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">メールアドレス:</strong> 
+        <span class="text-gray-900"><%= @reservation.email %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">予約日:</strong> 
+        <span class="text-gray-900"><%= @reservation.date.strftime('%Y-%m-%d') %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">来店時間:</strong> 
+        <span class="text-gray-900"><%= @reservation.time.strftime('%H:%M') %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">人数:</strong> 
+        <span class="text-gray-900"><%= @reservation.number_of_people %>人</span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">メッセージ:</strong> 
+        <span class="text-gray-900"><%= @reservation.message.presence || 'なし' %></span>
+      </p>
+      <p class="text-lg">
+        <strong class="text-gray-700">状態:</strong> 
+        <%# 状態に応じて色を変えるラベルを追加 %>
+        <% case @reservation.status
+           when '未確定'
+             status_class = 'bg-yellow-100 text-yellow-800'
+           when '確定'
+             status_class = 'bg-green-100 text-green-800'
+           else
+             status_class = 'bg-gray-100 text-gray-800'
+           end %>
+        <span class="px-2 py-1 text-sm rounded <%= status_class %>">
+          <%= @reservation.status %>
+        </span>
+      </p>
+    </div>
+
+    <div class="flex items-center justify-center space-x-4 mt-6">
+      <!-- 状態変更ボタン -->
+      <%= button_to(
+            @reservation.status == '確定' ? '未確定に戻す' : '確定にする',
+            toggle_status_admin_reservation_path(@reservation),
+            method: :patch,
+            class: "px-6 py-2 text-sm font-semibold text-white rounded-md shadow transition #{@reservation.status == '確定' ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}",
+            data: { confirm: "予約を#{@reservation.status == '確定' ? '未確定に戻します' : '確定します'}。よろしいですか？" }
+          ) %>
+
+      <!-- 予約一覧に戻るボタン -->
+      <%= link_to '予約一覧に戻る',
+                  admin_reservations_path,
+                  class: "px-6 py-2 text-sm font-semibold text-white rounded-md bg-indigo-500 hover:bg-indigo-600" %>
+    </div>
+
+  </div>
+</div>

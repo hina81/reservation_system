@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard/index'
+    
+    resources :reservations, only: [:index, :show, :destroy] do
+      member do
+        patch :toggle_status
+      end
+    end
   end
   devise_for :admins
-  
+
   root 'reservations#new'
 
   resources :reservations, only: [:new, :create]

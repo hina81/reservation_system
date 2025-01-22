@@ -33,8 +33,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'gmail.com',
-    user_name: ENV['GMAIL_USERNAME'],  # 環境変数でユーザー名を設定
-    password: ENV['GMAIL_PASSWORD'],  # 環境変数でパスワードを設定
+    user_name: ENV['ADMIN_EMAIL'],
+    password: ENV['ADMIN_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }

@@ -75,3 +75,5 @@ gem "webpacker", "~> 5.4"
 gem "devise"
 
 gem "tailwindcss-rails", "~> 3.3"
+
+gem 'dotenv-rails', groups: [:development, :test]

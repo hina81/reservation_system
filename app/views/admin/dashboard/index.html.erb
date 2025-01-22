@@ -1,4 +1,17 @@
-<div>
-  <h1 class="font-bold text-4xl">Admin::Dashboard#index</h1>
-  <p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<div class="w-full bg-gray-50 px-4 py-8">
+  <div class="w-full  bg-white p-6 rounded-lg shadow-md">
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">管理者トップページ</h2>
+
+    <!-- 確認していない予約件数 -->
+    <div class="mt-6">
+      <h3 class="text-xl font-medium text-gray-700">
+        <span class="font-semibold text-red-600">確認していない予約件数:</span> 
+        <span class="text-lg text-gray-800"><%= @unconfirmed_reservations_count %> 件</span>
+      </h3>
+    </div>
+
+    <!-- 予約一覧リンク -->
+    <%= link_to '予約一覧', admin_reservations_path, class: "mt-8 inline-block px-8 py-4 text-lg font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-500 focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 transition-transform transform hover:scale-105" %>
+  </div>
 </div>

@@ -1,0 +1,72 @@
+<div class="w-full bg-gray-50 px-4 py-8">
+  <div class="w-full bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">予約一覧</h1>
+
+    <p class="text-sm text-center text-gray-600 mb-8">
+      詳細ボタンから確定を押してください。
+    </p>
+
+    <!-- 未確定の予約 -->
+    <h2 class="text-lg font-bold text-white bg-yellow-500 p-4 mb-4 ml-10 rounded-md">
+        <span class="mr-2">&#x1F55C;</span> 未確定の予約（確認待ち）
+    </h2>
+    <div class="overflow-x-auto max-w-5xl mx-auto bg-white shadow-sm rounded-md">
+      <table class="w-full text-left border-collapse">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border px-3 py-2">お名前</th>
+            <th class="border px-3 py-2">予約日</th>
+            <th class="border px-3 py-2">来店時間</th>
+            <th class="border px-3 py-2">人数</th>
+            <th class="border px-3 py-2">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @unconfirmed_reservations.each do |reservation| %>
+            <tr class="even:bg-gray-50 odd:bg-white">
+              <td class="border px-3 py-2"><%= "#{reservation.last_name} #{reservation.first_name}" %></td>
+              <td class="border px-3 py-2"><%= reservation.date.strftime('%Y-%m-%d') %></td>
+              <td class="border px-3 py-2"><%= reservation.time.strftime('%H:%M') %></td>
+              <td class="border px-3 py-2"><%= reservation.number_of_people %></td>
+              <td class="border px-3 py-2">
+                <%= link_to '詳細', admin_reservation_path(reservation), class: "text-blue-600 hover:underline" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 確定した予約 -->
+    <h2 class="text-lg font-bold text-white bg-green-500 p-4 mb-4 mt-8 ml-10 rounded-md">
+        <span class="mr-2">&#x2705;</span> 確定した予約（確定済み）
+    </h2>
+    <div class="overflow-x-auto max-w-5xl mx-auto bg-white shadow-sm rounded-md">
+      <table class="w-full text-left border-collapse">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border px-3 py-2">お名前</th>
+            <th class="border px-3 py-2">予約日</th>
+            <th class="border px-3 py-2">来店時間</th>
+            <th class="border px-3 py-2">人数</th>
+            <th class="border px-3 py-2">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @confirmed_reservations.each do |reservation| %>
+            <tr class="even:bg-gray-50 odd:bg-white">
+              <td class="border px-3 py-2"><%= "#{reservation.last_name} #{reservation.first_name}" %></td>
+              <td class="border px-3 py-2"><%= reservation.date.strftime('%Y-%m-%d') %></td>
+              <td class="border px-3 py-2"><%= reservation.time.strftime('%H:%M') %></td>
+              <td class="border px-3 py-2"><%= reservation.number_of_people %></td>
+              <td class="border px-3 py-2">
+                <%= link_to '詳細', admin_reservation_path(reservation), class: "text-blue-600 hover:underline" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
