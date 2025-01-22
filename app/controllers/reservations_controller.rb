@@ -1,29 +1,31 @@
 class ReservationsController < ApplicationController
 
+  def new
+    @reservation = Reservation.new
+  end
+
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservations = Reservation.all
     if @reservation.save
-      flash[:notice] = "予約完了しました."
-      redirect_to reservation_path(@reservation.id)
+      # メール送信
+      ReservationMailer.confirmation_email(@reservation).deliver_later
+
+      redirect_to reservation_path(@reservation)
     else
-      render :index
+      render :new
     end
+  end
+
+  def show
+    @reservation = Reservation.find(params[:id])
   end
 
   def index
   end
 
-  def show
-    
+  private
+  def reservation_params
+    params.require(:reservation).permit(:full_name, :email, :date, :time, :number_of_people)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   root 'homes#top'
-  resources :reservations, only: [:new, :create, :index, :edit, :update, :show, :destroy ]
+  resources :reservations, only: [:new, :create, :show]
   devise_for :users
 
 end

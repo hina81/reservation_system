@@ -1,0 +1,16 @@
+<div class="min-h-screen bg-gray-50 p-6">
+  <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">予約が完了しました！</h1>
+
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-gray-800">ご予約内容</h2>
+    <p class="mt-4 text-lg">お名前: <%= @reservation.full_name %></p>
+    <p class="text-lg">メールアドレス: <%= @reservation.email %></p>
+    <p class="text-lg">予約日: <%= @reservation.date %></p>
+    <p class="text-lg">来店時間: <%= @reservation.time %></p>
+    <p class="text-lg">人数: <%= @reservation.number_of_people %> 人</p>
+  </div>
+
+  <div class="mt-6 text-center">
+    <%= link_to '予約内容を変更する', new_reservation_path, class: "text-blue-500 hover:text-blue-700" %>
+  </div>
+</div>
