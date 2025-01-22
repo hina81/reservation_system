@@ -1,2 +1,117 @@
-<h1>Reservations#new</h1>
-<p>Find me in app/views/reservations/new.html.erb</p>
+<div class="w-full bg-gray-50 px-4 py-8">
+  <div class="w-full  bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center py-4">横川コンフィ ご予約フォーム</h1>
+    <p class="mt-2 text-gray-600 text-center">以下より必要な情報をご入力ください。</p>
+
+    <%= form_with model: @reservation, local: true, class: "space-y-6" do |f| %>
+      <!-- お名前 -->
+      <div>
+        <%= f.label :full_name, class: "block font-medium text-gray-700" do %>
+          お名前
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm text-gray-500">姓</label>
+            <%= f.text_field :last_name, required: true, placeholder: "山田", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+          </div>
+          <div>
+            <label class="text-sm text-gray-500">名</label>
+            <%= f.text_field :first_name, required: true, placeholder: "太郎", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- お名前（カタカナ） -->
+      <div>
+        <%= f.label :full_name_kana, class: "block font-medium text-gray-700" do %>
+          お名前（カタカナ）
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm text-gray-500">セイ</label>
+            <%= f.text_field :kana_last_name, required: true, placeholder: "ヤマダ", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+            
+          </div>
+          <div>
+            <label class="text-sm text-gray-500">メイ</label>
+            <%= f.text_field :kana_first_name, required: true, placeholder: "タロウ", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- メールアドレス -->
+      <div>
+        <%= f.label :email, class: "block font-medium text-gray-700" do %>
+          メールアドレス
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.email_field :email, required: true, placeholder: "mail@example.com", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+      <div>
+        <%= f.label :email_confirmation, class: "block font-medium text-gray-700" do %>
+          確認のためもう一度入力してください
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.email_field :email_confirmation, required: true, placeholder: "mail@example.com", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <!-- 電話番号 -->
+      <div>
+        <%= f.label :phone, class: "block font-medium text-gray-700" do %>
+          電話番号
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.telephone_field :phone, required: true, placeholder: "09012345678", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <!-- 日付 -->
+      <div>
+        <%= f.label :date, class: "block font-medium text-gray-700" do %>
+          日付選択
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.date_field :date, 
+              required: true, 
+              min: (Date.today + 1).to_s, 
+              max: (Date.today + 1.month).to_s, 
+              class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <!-- 時間 -->
+      <div>
+        <%= f.label :time, class: "block font-medium text-gray-700" do %>
+          来店時間
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.time_select :time, required: true, minute_step: 15, start_hour: 17, end_hour: 22, default: Time.zone.local(2000, 1, 1, 17, 30), class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <!-- 人数 -->
+      <div>
+        <%= f.label :number_of_people, class: "block font-medium text-gray-700" do %>
+          人数
+          <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
+        <% end %>
+        <%= f.number_field :number_of_people, required: true, min: 1, max: 10, step: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+        <p class="mt-1 text-sm text-gray-500">11名以上のご予約・貸切のご相談は、お電話でお願いいたします。</p>
+      </div>
+
+      <!-- 備考 -->
+      <div>
+        <%= f.label :note, class: "block font-medium" do %>
+          事前にお伝えしたい内容があれば、ご記入ください。
+          <span class="ml-1 text-xs text-white bg-gray-500 px-2 py-0.5 rounded">任意</span>
+        <% end %>
+        <%= f.text_area :note, placeholder: "例: アレルギーがある場合はお知らせください。", class: "mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <!-- 送信ボタン -->
+      <div>
+        <%= f.submit "送信", class: "w-full bg-blue-400 text-white py-2 px-4 rounded-md hover:bg-blue-200 focus:ring-2 focus:ring-blue-300 focus:ring-offset-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>
