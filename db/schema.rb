@@ -12,10 +12,14 @@
 
 ActiveRecord::Schema[7.0].define(version: 2025_01_22_031926) do
   create_table "reservations", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "kana_first_name"
+    t.string "kana_last_name"
     t.string "email"
     t.string "phone"
     t.datetime "date"
+    t.integer "number_of_people"
     t.text "message"
     t.string "status"
     t.datetime "created_at", null: false

@@ -1,13 +1,19 @@
 class CreateReservations < ActiveRecord::Migration[7.0]
   def change
     create_table :reservations do |t|
-      $ rails g devise User
-
-      t.string :name
+      
+      t.string :first_name
+      t.string :last_name
+      t.string :kana_first_name
+      t.string :kana_last_name
+      
       t.string :email
       t.string :phone
+
       t.datetime :date
+      t.integer :number_of_people
       t.text :message
+
       t.string :status
 
       t.timestamps
