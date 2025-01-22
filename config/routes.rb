@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   get 'reservations/edit'
   get 'reservations/update'
   get 'reservations/destroy'
-  get 'homes/top'
+  root 'homes#top'
+  resources :reservations, only: [:new, :create, :index, :edit, :update, :show, :destroy ]
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
