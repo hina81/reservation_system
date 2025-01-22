@@ -1,0 +1,21 @@
+<div class="w-full bg-gray-50 px-4 py-8">
+  <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">予約が完了しました！</h1>
+  
+  <div class="w-full  bg-white p-6 rounded-lg shadow-md">
+    <p class="text-lg text-gray-600 text-center">
+      予約のキャンセル・変更はお電話でお願いいたします。
+      <br>
+      <span class="font-semibold text-indigo-600">TEL: 082-909-2024</span>
+    </p>
+
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 mt-4">ご予約内容</h2>
+    <div class="space-y-4">
+      <p class="text-lg text-gray-700">お名前: <span class="font-semibold text-gray-900"><%= "#{@reservation.last_name} #{@reservation.first_name}" %></span></p>
+      <p class="text-lg text-gray-700">お名前（カナ）: <span class="font-semibold text-gray-900"><%= "#{@reservation.kana_last_name} #{@reservation.kana_first_name}" %></span></p>
+      <p class="text-lg text-gray-700">メールアドレス: <span class="font-semibold text-gray-900"><%= @reservation.email %></span></p>
+      <p class="text-lg text-gray-700">予約日: <span class="font-semibold text-gray-900"><%= @reservation.date.strftime("%Y年%m月%d日") %></span></p>
+      <p class="text-lg text-gray-700">来店時間: <span class="font-semibold text-gray-900"><%= @reservation.time.strftime("%H:%M") %></span></p>
+      <p class="text-lg text-gray-700">人数: <span class="font-semibold text-gray-900"><%= @reservation.number_of_people %> 人</span></p>
+    </div>
+  </div>
+</div>

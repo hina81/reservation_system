@@ -86,7 +86,7 @@
           来店時間
           <span class="ml-1 text-xs text-white bg-red-500 px-2 py-0.5 rounded">必須</span>
         <% end %>
-        <%= f.time_select :time, required: true, minute_step: 15, start_hour: 17, end_hour: 22, default: Time.zone.local(2000, 1, 1, 17, 30), class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+        <%= f.time_select :time, required: true, minute_step: 15, start_hour: 18, end_hour: 22, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
       </div>
 
       <!-- 人数 -->

@@ -10,7 +10,9 @@ class CreateReservations < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :phone
 
-      t.datetime :date
+      t.date :date
+      t.time :time
+
       t.integer :number_of_people
       t.text :message
 

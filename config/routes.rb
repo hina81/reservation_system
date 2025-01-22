@@ -3,8 +3,14 @@ Rails.application.routes.draw do
     get 'dashboard/index'
   end
   devise_for :admins
-  root 'homes#top'
-  resources :reservations, only: [:new, :create, :show]
+  
+  root 'reservations#new'
+
+  resources :reservations, only: [:new, :create]
+  get 'reservation_complete', to: 'reservations#complete', as: 'reservation_complete'  # 完了画面
+
+  get '/home', to: 'homes#top', as: 'home_top'
+
   devise_for :users
 
 end
